@@ -60,6 +60,7 @@ class scraper:
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f3_r2_c2_ctrl',
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f3_r2_c3_ctrl',
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f3_r2_c4_ctrl',
+            'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f1_r9_c2_ctrl',
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f1_r23_c2_ctrl',
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f2_r1_c2_ctrl',
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f2_r1_c4_ctrl',
@@ -146,7 +147,8 @@ def getDF(combinedData):
                 ('Installment payment agreement agreed payment amount'
                  ' (ten thousand yuan)'),
                 'Note',
-                'Land use right holder',
+                'Land use right holder Row 1',
+                'Land use right holder Row 2',
                 'Agreed floor area ratio lower limit',
                 'Agreed floor area ratio upper limit',
                 'Agreed land delivery time',

@@ -35,7 +35,7 @@ class scraper:
     def combinedData(self):
         return self._combinedData
 
-    def importData(self, html):
+    def importData(self, html, url):
         """Appends html to instance"""
         # Get the soup
         soup = BeautifulSoup(html, 'html.parser')
@@ -69,13 +69,15 @@ class scraper:
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f1_r10_c2_ctrl',
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f1_r10_c4_ctrl',
             'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f1_r14_c2_ctrl',
-            'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f1_r14_c4_ctrl'
+            'mainModuleContainer_1855_1856_ctl00_ctl00_p1_f1_r14_c4_ctrl',
         ]
         # Get the data from the table
         data = []
         for i in cols:
             val = tab.find('span', id=i).text.strip()
             data.append(val)
+        # Append URL
+        data.append(url)
         self.combinedData.append(data)
 
 
@@ -114,8 +116,8 @@ def getHTML(url, cookie):
         u'Referer': (u'http://www.landchina.com/default.aspx?tabid=263&wmguid'
                      '=75c72564-ffd9-426a-954b-8ac2df0903b7&p=')
     }
-    r = requests.get(url, headers=headers).text
-    return r
+    html = requests.get(url, headers=headers).text
+    return (html, url)
 
 
 def getDF(combinedData):
@@ -153,7 +155,8 @@ def getDF(combinedData):
                 'Actual start time',
                 'Actual completion time',
                 'Authorised by',
-                'Contract signing date'
+                'Contract signing date',
+                'URL'
                 ]
     df = pd.DataFrame(combinedData, columns=colnames)
     print('DF shape: ', df.shape)
@@ -183,9 +186,9 @@ def main(f,
     for url in getURLs(f):
         print('URL #', i, ' ', url[0])
         # Get HTML text
-        html = getHTML(url[0], cookie)
+        html, url = getHTML(url[0], cookie)
         # Append HTML data to scraper instance
-        s.importData(html)
+        s.importData(html, url)
         i += 1
         print('Length of data: ', len(s.combinedData))
     # Get DataFrame

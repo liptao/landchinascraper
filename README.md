@@ -1,6 +1,6 @@
 # landchinascraper
 
-Scrapes land transaction results data (????) from https://www.landchina.com.
+Scrapes land transaction results data (结果公告) from https://www.landchina.com.
 
 ## Features
 

@@ -10,8 +10,11 @@ from configparser import ConfigParser
 
 parser = ConfigParser()
 parser.read(os.path.join(os.path.dirname(__file__), '..', 'config.cfg'))
-cookie = parser.get('settings', 'cookie')
-f = 'csvfile.csv'
+cookie = parser.get('landchinascraper settings', 'cookie')
+f = os.path.join(os.path.dirname(__file__),
+                 '..',
+                 'input',
+                 'URLs.csv')
 outputLocation = os.path.join(os.path.dirname(__file__),
                               '..',
                               'output',
@@ -79,7 +82,7 @@ class scraper:
             data.append(val)
         # Append URL
         data.append(url)
-        self.combinedData.append(data)
+        self._combinedData.append(data)
 
 
 def getURLs(f):
@@ -88,8 +91,7 @@ def getURLs(f):
     Input:
     f -- csv file name with links to transactions
     """
-    path = os.path.join(os.path.dirname(__file__), '..', 'input', f)
-    with open(path, 'r') as csvfile:
+    with open(f, 'r') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
         for row in reader:
             yield row
@@ -98,7 +100,7 @@ def getURLs(f):
 def getHTML(url, cookie):
     """Get HTML text from urls"""
     # Wait in order to avoid IP ban
-    x = random.randrange(3, 6)
+    x = random.randrange(1, 4)
     print('Waiting...', int(x), ' seconds')
     time.sleep(x)
     headers = {

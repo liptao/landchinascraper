@@ -1,4 +1,4 @@
-# landchinascraper
+﻿# landchinascraper
 
 Scrapes land transaction results data (结果公告) from https://www.landchina.com.
 
@@ -62,7 +62,7 @@ Running `python landchinascraper.py` scrapes links located in `input/URLs.csv` a
 Be aware that the scraper includes random pauses to prevent detection and IP blocks from the website. The pauses are 1-4 seconds to be safe, but you might be able to get away with shorter pauses.
 
 For the scraper to work, you must edit the cookie needs to be inputted in the `config.cfg` file. The cookie can be retrieved using developer tools on any transaction link from landchina and looks something like this:
-![cookie](images/cookie.png).
+![cookie](images/cookie.PNG).
 The format of the cookie to paste will look something like this:
 
 ```

@@ -10,6 +10,7 @@ Scrapes land transaction results data (结果公告) from https://www.landchina.
 - landchinascraper.py - scrapes transaction result links from csv 
   - Requires requests, BeautifulSoup, and Pandas
   - Able to output analysis ready DataFrame and Excel spreadsheet
+  - Using selenium avoids having to find the right parameters to send with a post request as the site has javascript
 
 ## Instructions 
 

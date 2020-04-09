@@ -9,7 +9,8 @@ from configparser import ConfigParser
 
 
 parser = ConfigParser()
-parser.read(os.path.join(os.path.dirname(__file__), '..', 'config.cfg'))
+parser.read(os.path.join(os.path.dirname(__file__),
+                         '..', 'config.cfg'), encoding='utf-8')
 cookie = parser.get('landchinascraper settings', 'cookie')
 f = os.path.join(os.path.dirname(__file__),
                  '..',
